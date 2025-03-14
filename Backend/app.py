@@ -59,7 +59,7 @@ def home():
     return "Flask Backend"
 
 
-@app.route('/uploads/posters/<filename>')
+@app.route('/posters/<filename>')
 def serve_poster(filename):
     return send_from_directory(POSTERS_FOLDER, filename)
 
@@ -112,7 +112,7 @@ def moviesdata():
 
     data = Movies(
         moviename=Moviename,
-        movieposter=f"/uploads/posters/{filename}" if filename else None,
+        movieposter=f"posters/{filename}" if filename else None,
         movievideo=Movievideo,
         info=Info,
         director=Director,
@@ -136,10 +136,11 @@ def deleteMovie(id):
     movie = Movies.query.get(id)
     if movie:
         if movie.movieposter:
-            poster_path = os.path.join(os.getcwd(), movie.movieposter.lstrip("/"))
-            if os.path.exists(poster_path): 
+            BASE_DIR = r"C:\Users\DELL\OneDrive\Desktop\GitFolder\tmdb\Backend"
+            poster_path = os.path.join(BASE_DIR, movie.movieposter.lstrip("/").replace("/", os.sep))
+            if os.path.exists(poster_path):
                 os.remove(poster_path)
-
+            
         db.session.delete(movie)
         db.session.commit()
 
