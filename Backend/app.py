@@ -15,7 +15,7 @@ adminPass = os.getenv("ADMIN_PASS")
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://postgres:{password}@localhost/TmdbData"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "Tmdb/uploads")
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "Tmdb/Backend")
 POSTERS_FOLDER = os.path.join(UPLOAD_FOLDER, "posters")
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
