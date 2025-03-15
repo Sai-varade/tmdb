@@ -136,11 +136,11 @@ def deleteMovie(id):
     movie = Movies.query.get(id)
     if movie:
         if movie.movieposter:
-            BASE_DIR = r"C:\Users\DELL\OneDrive\Desktop\GitFolder\tmdb\Backend"
+            BASE_DIR = r"tmdb\Backend"
             poster_path = os.path.join(BASE_DIR, movie.movieposter.lstrip("/").replace("/", os.sep))
             if os.path.exists(poster_path):
                 os.remove(poster_path)
-            
+
         db.session.delete(movie)
         db.session.commit()
 
@@ -163,7 +163,6 @@ def updateMovie(id):
         datas = request.get_json()
 
         movie.moviename = datas['moviename']
-        movie.movieposter = datas['movieposter']
         movie.movievideo = datas['movievideo']
         movie.info = datas['info']
         movie.director = datas['director']
@@ -175,6 +174,21 @@ def updateMovie(id):
 
     return jsonify({"message": "Failed To Update"})
 
+@app.route('/Users')
+def Users():
+    users = User.query.all()
+    return jsonify([{"username":user.name, "userid" : user.id, "password": user.password,"email": user.email} for user in users]) if users else jsonify({"message":"No user"})
+
+
+@app.route("/UserDelete/<int:userid>")
+def delete_user(userid):
+    user = User.query.get(userid)
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "User deleted"}), 200
+    return jsonify({"error": "User not found"}), 404
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
