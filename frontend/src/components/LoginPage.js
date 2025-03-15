@@ -28,11 +28,11 @@ const Login = () => {
           email: email,
           password: password
         });
-        if(response.data.message == "Login Successfully"){
+        if(response.data.message === "Login Successfully"){
           
           navigate('/home')
         }
-        else if(response.data.message == "Admin"){
+        else if(response.data.message === "Admin"){
           
           navigate('/Admin')
         }
@@ -54,7 +54,7 @@ const Login = () => {
           email: email,
           password: password
         });
-        if(response.data.message == "Register Successfully"){
+        if(response.data.message === "Register Successfully"){
           alert("Register Successfully")
           window.location.reload()
         }
@@ -71,10 +71,10 @@ const Login = () => {
           <form onSubmit={handleSubmitSignUp} className="form">
             <h1>Create Account</h1>
             <div className="social-containerss">
-            <a href="#" className="social">T</a>
-            <a href="#" className="social">M</a>
-            <a href="#" className="social">D</a>
-            <a href="#" className="social">B</a>
+            <a href="/" className="social">T</a>
+            <a href="/" className="social">M</a>
+            <a href="/" className="social">D</a>
+            <a href="/" className="social">B</a>
             </div>
             {/* <span>or use your email for registration</span> */}
             <input type="text" placeholder="Name" value={username} onChange={(e) => setUsername(e.target.value)} required/>
@@ -87,10 +87,10 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="form">
             <h1>Sign in</h1>
             <div className="social-containerss">
-            <a href="#" className="social">T</a>
-            <a href="#" className="social">M</a>
-            <a href="#" className="social">D</a>
-            <a href="#" className="social">B</a>
+            <a href="/" className="social">T</a>
+            <a href="/" className="social">M</a>
+            <a href="/" className="social">D</a>
+            <a href="/" className="social">B</a>
             </div>
             {/* <span>or use your account</span> */}
             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>

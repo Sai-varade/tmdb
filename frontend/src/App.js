@@ -2,6 +2,12 @@ import React from 'react'
 import Login from './components/LoginPage'
 import Admin from './components/Admin'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AddMovieForm from './components/AddMovie';
+import MoviesList from './components/deletemovies';
+import MovieList from './components/allmovies';
+import EditMovies from './components/Editmovie';
+import Edit from './components/Edit';
+import Alluser from './components/Alluser';
 
 const App = () => {
   const router = createBrowserRouter(
@@ -14,6 +20,36 @@ const App = () => {
       {
         path : "/Admin",
         element : <><Admin/></>
+      }
+      ,
+      {
+        path : "/Add",
+        element : <><AddMovieForm/></>
+      }
+      ,
+      {
+        path : "/Delete",
+        element : <><MoviesList/></>
+      }
+      ,
+      {
+        path : "/Allmovies",
+        element : <><MovieList/></>
+      }
+      ,
+      {
+        path : "/Edit",
+        element : <><EditMovies/></>
+      }
+      ,
+      {
+        path : "/EditMovie/:id",
+        element : <><Edit/></>
+      }
+      ,
+      {
+        path : "/AllUsers",
+        element : <><Alluser/></>
       }
     ]
   )

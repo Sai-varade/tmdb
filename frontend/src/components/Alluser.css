@@ -1,0 +1,111 @@
+/* General Styling */
+.alluser-container {
+    width: 199vh;
+    min-height: 120vh;
+    /* max-height: 150vh; */
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    min-height: 110vh;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    /* padding: 0px; */
+    /* height: 100%; */
+}
+ 
+/* Header Section */
+.header {
+    background: none;
+    margin-top:6rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    /* margin-bottom: 30px; */
+    padding: 0;
+}
+
+.back-buttons {
+    background: linear-gradient(135deg, #ff6b6b, #ff4757);
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.6rem;
+    margin-left: 3rem;
+    /* margin-right: 1.5rem; */
+}
+
+.back-buttons:hover {
+    background: linear-gradient(135deg, #ff4757, #e74c3c);
+    transform: scale(1.1);
+}
+
+.title {
+    margin-top: 4rem;
+    color: #fff;
+    font-size: 52px;
+    font-weight: bold;
+}
+
+/* User List */
+.user-list {
+    height: 100%;
+    width: 200vh;
+    max-width: 199vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    /* margin-left: 0rem; */
+    padding: 2rem;
+}
+
+/* Individual User Card */
+.user-card {
+    /* margin: 20px; */
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    min-width: 20vh;
+    /* min-width: 50vh; */
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+}
+
+.user-card h3 {
+    font-size: 20px;
+    color: #333;
+    margin: 8px 0;
+}
+
+.user-card span {
+    font-weight: bold;
+    color: #ff4757;
+}
+
+/* No User Message */
+.no-user {
+    color: white;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-left: 80px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .user-list {
+        grid-template-columns: 1fr;
+    }
+}
