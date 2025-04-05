@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { IoMdHome } from "react-icons/io";
-import { GrFormSearch } from "react-icons/gr";
-import { FaUser } from "react-icons/fa";
 import Header from "./Header";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import axios from "axios";
 const Moviecard = () => {
   const [movies, setMovies] = useState([]);

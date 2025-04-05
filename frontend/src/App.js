@@ -8,7 +8,6 @@ import MovieList from './components/allmovies';
 import EditMovies from './components/Editmovie';
 import Edit from './components/Edit';
 import Alluser from './components/Alluser';
-
 import Moviedetail from './components/Moviedetail';
 import Moviecard from './components/home';
 import Reviews from './components/Reviews';

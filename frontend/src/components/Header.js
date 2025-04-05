@@ -169,7 +169,7 @@ const Header = () => {
           }}
         >
           <FaUser style={{ marginBottom: "5px", marginRight: "3px" }} />
-          Login
+          {sessionStorage.getItem('user')}
         </h2>
       </div>
     </div>

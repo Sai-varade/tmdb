@@ -31,12 +31,15 @@ const Moviedetail = () => {
         const ReviewData = {
             star : clickStar,
             review : textarea,
-            username : "Sai",
+            username : sessionStorage.getItem('user'),
             moviename : movie.moviename
         }
+        setclickStar(0);
+            settextarea("")
         try{
             await axios.post(`http://localhost:5000/SubmitReview`,ReviewData);
-
+            setclickStar(0);
+            settextarea("")
         }catch(error){
             alert("Unable to Review")
         }

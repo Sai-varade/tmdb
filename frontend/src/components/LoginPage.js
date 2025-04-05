@@ -21,7 +21,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      console.log(email)
+
       try{
         const response = await axios.post('http://localhost:5000/login',
         {
@@ -29,7 +29,8 @@ const Login = () => {
           password: password
         });
         if(response.data.message === "Login Successfully"){
-          
+          sessionStorage.setItem('user',response.data.user)
+          console.log(sessionStorage.getItem('user'))
           navigate('/home')
         }
         else if(response.data.message === "Admin"){
@@ -46,7 +47,6 @@ const Login = () => {
   };
   const handleSubmitSignUp = async (e) => {
     e.preventDefault();
-      console.log(email)
       try{
         const response = await axios.post('http://localhost:5000/register',
         {

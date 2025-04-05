@@ -88,7 +88,7 @@ def login():
     user = User.query.filter_by(email=data['email']).first()
 
     if user and user.password == data['password']:
-        return jsonify({"message": "Login Successfully"})
+        return jsonify({"message": "Login Successfully","user":user.name})
 
     if data['email'] == adminId and data['password'] == adminPass:
         return jsonify({"message": "Admin"})
@@ -97,6 +97,9 @@ def login():
 
 @app.route('/SubmitReview',methods=['POST'])
 def submitreview():
+    review = Reviews.query.filter_by(name=data['username']).all()
+    if review:
+        return 404
     data = request.get_json()
     rev = Reviews(star=data['star'],moviename=data['moviename'],username=data['username'],review = data['review'])
     db.session.add(rev)
