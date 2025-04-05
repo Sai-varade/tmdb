@@ -44,25 +44,43 @@ class Movies(db.Model):
             "writer": self.writer,
             "star": self.star
         }
+class Reviews(db.Model):
+    __tablename__ = 'reviews'
 
-
+    id = db.Column(db.Integer, primary_key=True)
+    review = db.Column(db.String(100), nullable=False)
+    moviename = db.Column(db.String(100),  nullable=False)
+    star = db.Column(db.Integer, nullable=False)  
+    username = db.Column(db.String(50), nullable=False) 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "moviename": self.moviename,
+            "review": self.review,
+            "username": self.username,
+            "star": self.star
+        }
 class User(db.Model):
     __tablename__ = 'login'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
-    password = db.Column(db.String(200), nullable=False)  # Store hashed passwords
-
+    password = db.Column(db.String(200), nullable=False)  
 
 @app.route('/')
 def home():
-    return "Flask Backend"
+    return jsonify("Flask Backend")
+                                                        
+@app.route('/Reviews/<moviename>')  
+def Revieww(moviename):
+    review = Reviews.query.filter_by(moviename=moviename).all()
 
+    return jsonify([rev.to_dict() for rev in review]) 
 
 @app.route('/posters/<filename>')
 def serve_poster(filename):
     return send_from_directory(POSTERS_FOLDER, filename)
-
+    
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -77,6 +95,13 @@ def login():
 
     return jsonify({"message": "Wrong Email or Password"})
 
+@app.route('/SubmitReview',methods=['POST'])
+def submitreview():
+    data = request.get_json()
+    rev = Reviews(star=data['star'],moviename=data['moviename'],username=data['username'],review = data['review'])
+    db.session.add(rev)
+    db.session.commit()
+    return jsonify("Review Succesfully submited")
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -191,5 +216,5 @@ def delete_user(userid):
     
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 

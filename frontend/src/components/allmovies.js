@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import './allmovies.css';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaTrash } from "react-icons/fa";
 
 const Skeleton = () => (
@@ -30,10 +30,7 @@ const MovieList = () => {
     if (loading) {
         return <Skeleton />;
     }
-{/* <div className='maindivs'>
-       
-        
-        </div> */}
+
     return (
         <div>
             <div className='main'>
