@@ -97,10 +97,11 @@ def login():
 
 @app.route('/SubmitReview',methods=['POST'])
 def submitreview():
-    review = Reviews.query.filter_by(name=data['username']).all()
-    if review:
-        return 404
     data = request.get_json()
+    review = Reviews.query.filter_by(username=data['username']).all()
+    if review:
+        return jsonify("no Review"),404
+
     rev = Reviews(star=data['star'],moviename=data['moviename'],username=data['username'],review = data['review'])
     db.session.add(rev)
     db.session.commit()

@@ -17,10 +17,10 @@ const Moviedetail = () => {
         const loadData = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/detail_movie/${id}`);
-                console.log(response.data);
+
                 Setmovie(response.data);
             } catch (error) {
-                console.error("Error fetching data:", error);
+  
                 Setmovie({});
             }
         };
