@@ -18,7 +18,10 @@ const Login = () => {
     setEmail('');
     setPassword('');
   };
-
+  function isStrongPassword(p) {
+  const regex =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^+=])[A-Za-z\d@$!%*?&#^+=]{8,}$/;
+  return regex.test(p);
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,7 +50,9 @@ const Login = () => {
   };
   const handleSubmitSignUp = async (e) => {
     e.preventDefault();
-      try{
+    
+   if(isStrongPassword(password)){
+       try{
         const response = await axios.post('http://localhost:5000/register',
         {
           name : username,
@@ -62,6 +67,9 @@ const Login = () => {
       }catch{
         alert("Unable to Process")
       }
+   }else{
+    alert("Password Should be Strong")
+   }
   };
 
   return (

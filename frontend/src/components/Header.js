@@ -15,7 +15,7 @@ const Header = () => {
   useEffect(() => {
     const Loadmovie = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/all_movies");
+        const response = await axios.get(`http://localhost:5000/all_movies/${0}`);
         setMovies(response.data);
       } catch (error) {
         setMovies([]);
@@ -31,13 +31,17 @@ const Header = () => {
 
     const searchitem = e.target.value.toLowerCase().trim();
 
-    const filterres = movies.filter((movie) =>
-      movie.moviename.toLowerCase().includes(searchitem)
-    );
-    if (searchitem.length > 0) {
-      setSearchList(filterres);
-    } else {
-      setSearchList([]);
+    if(movies.length > 0){
+      const filterres = movies.filter((movie) =>
+        movie.moviename.toLowerCase().includes(searchitem)
+      );
+      if (searchitem.length > 0) {
+        setSearchList(filterres);
+      } else {
+        setSearchList([]);
+      }
+    }else{
+      setSearchList("Result Not Found")
     }
   };
  function on(id){
@@ -137,7 +141,7 @@ const Header = () => {
                 width: "70vh",
               }}
             >
-              {searchList.length > 0 ? (
+              {searchList.length > 0 && movies.length > 0 ? (
                 searchList.map((movie, index) => (
                   <h2
                   onClick={()=>{on(movie.id)}}
